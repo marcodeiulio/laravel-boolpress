@@ -53884,7 +53884,7 @@ var root = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/reidar/dev/laravel/march/march_29th/laravel-one-to-many/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/reidar/dev/laravel/april/april_4th/laravel-boolpress/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
