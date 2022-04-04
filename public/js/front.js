@@ -5172,6 +5172,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostsList",
   data: function data() {
@@ -41510,13 +41536,64 @@ var render = function () {
     "section",
     { staticClass: "container", attrs: { id: "posts-list" } },
     [
+      _c("h2", [_vm._v("Posts")]),
+      _vm._v(" "),
       _vm.posts.length
         ? _c(
             "ul",
+            { staticClass: "list-unstyled" },
             _vm._l(_vm.posts, function (post) {
-              return _c("li", { key: post.id }, [
-                _c("h5", [_vm._v(_vm._s(post.title))]),
-              ])
+              return _c(
+                "li",
+                {
+                  key: post.id,
+                  staticClass: "col-12 d-flex justify-content-center my-3",
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card mb-3",
+                      staticStyle: { "max-width": "540px" },
+                    },
+                    [
+                      _c("div", { staticClass: "row g-0" }, [
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("img", {
+                            staticClass: "img-fluid rounded-start",
+                            attrs: {
+                              src: post.image,
+                              alt: "Thumb: [" + post.title + "]",
+                            },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-8" }, [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("h5", { staticClass: "card-title" }, [
+                              _vm._v(_vm._s(post.title)),
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "card-text" }, [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(post.content) +
+                                  "\n              "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "card-text" }, [
+                              _c("small", { staticClass: "text-muted" }, [
+                                _vm._v(_vm._s(post.updated_at)),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ]
+              )
             }),
             0
           )
