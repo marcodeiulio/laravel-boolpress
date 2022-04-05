@@ -5269,6 +5269,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostDetailPage",
@@ -5284,7 +5286,7 @@ __webpack_require__.r(__webpack_exports__);
     getPost: function getPost() {
       var _this = this;
 
-      axios.get("http://127.0.0.1:8000/api/posts/3").then(function (res) {
+      axios.get("http://127.0.0.1:8000/api/posts/" + this.$route.params.id).then(function (res) {
         _this.post = res.data;
       })["catch"](function (err) {
         console.log(err);
@@ -5346,9 +5348,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
-  props: ["post"],
+  props: ["post", "expandable"],
   computed: {
     updatedAt: function updatedAt() {
       var postDate = new Date(this.post.updated_at);
@@ -42603,18 +42606,20 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container mt-3" },
-    [
-      _c("h1", [_vm._v("PAOJDPA")]),
-      _vm._v(" "),
-      _vm.post
-        ? _c("post-card", { attrs: { post: _vm.post } })
-        : _c("h3", [_vm._v("Post non disponibile.")]),
-    ],
-    1
-  )
+  return _c("div", { staticClass: "container mt-3" }, [
+    _c("h1", { staticClass: "mb-3" }, [_vm._v("PAOJDPA")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "d-flex justify-content-center" },
+      [
+        _vm.post
+          ? _c("post-card", { attrs: { post: _vm.post } })
+          : _c("h3", [_vm._v("Post non disponibile.")]),
+      ],
+      1
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42677,16 +42682,18 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "btn btn-sm btn-outline-info",
-          attrs: {
-            to: { name: "PostDetailPage", params: { id: _vm.post.id } },
-          },
-        },
-        [_vm._v("See more...")]
-      ),
+      _vm.expandable
+        ? _c(
+            "router-link",
+            {
+              staticClass: "btn btn-sm btn-outline-info",
+              attrs: {
+                to: { name: "PostDetailPage", params: { id: _vm.post.id } },
+              },
+            },
+            [_vm._v("See more...")]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -42751,7 +42758,7 @@ var render = function () {
                   key: post.id,
                   staticClass: "col-12 d-flex justify-content-center my-3",
                 },
-                [_c("post-card", { attrs: { post: post } })],
+                [_c("post-card", { attrs: { post: post, expandable: true } })],
                 1
               )
             }),

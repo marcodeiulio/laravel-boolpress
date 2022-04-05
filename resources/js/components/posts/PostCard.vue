@@ -21,6 +21,7 @@
     <router-link
       class="btn btn-sm btn-outline-info"
       :to="{ name: 'PostDetailPage', params: { id: post.id } }"
+      v-if="expandable"
       >See more...</router-link
     >
     <div
@@ -40,7 +41,7 @@
 <script>
 export default {
   name: "PostCard",
-  props: ["post"],
+  props: ["post", "expandable"],
   computed: {
     updatedAt() {
       const postDate = new Date(this.post.updated_at);

@@ -7,7 +7,7 @@
         :key="post.id"
         class="col-12 d-flex justify-content-center my-3"
       >
-        <post-card :post="post" />
+        <post-card :post="post" :expandable="true" />
       </li>
     </ul>
     <p v-else>Non ci sono post</p>
