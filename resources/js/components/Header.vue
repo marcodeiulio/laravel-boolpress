@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+    <div class="container">
       <router-link class="navbar-brand" :to="{ name: 'Home' }">{{
         title
       }}</router-link>

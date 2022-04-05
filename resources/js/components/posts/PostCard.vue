@@ -18,6 +18,11 @@
         {{ post.content }}
       </p>
     </div>
+    <router-link
+      class="btn btn-sm btn-outline-info"
+      :to="{ name: 'PostDetailPage', params: { id: post.id } }"
+      >See more...</router-link
+    >
     <div
       class="card-footer d-flex align-items-center"
       :class="

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // Importo i componenti
 import HomePage from './components/pages/HomePage'
 import ContactsPage from './components/pages/ContactsPage'
+import PostDetailPage from './components/pages/PostDetailPage'
 import NotFoundPage from './components/pages/NotFoundPage'
 
 // Dico a Vue di usare VueRouter
@@ -16,6 +17,7 @@ const router = new VueRouter({
 		{ path: '/', component: HomePage },
 		{ path: '/home', component: HomePage, name: 'Home' },
 		{ path: '/contacts', component: ContactsPage, name: 'Contacts' },
+		{ path: '/posts/:id', component: PostDetailPage, name: 'PostDetailPage' },
 
 		// Route di errore
 		{ path: '*', component: NotFoundPage },
