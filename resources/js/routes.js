@@ -13,8 +13,8 @@ const router = new VueRouter({
 	mode: 'history',
 	routes: [
 		{ path: '/', component: HomePage },
-		{ path: '/home', component: HomePage },
-		{ path: '/contacts', component: ContactsPage },
+		{ path: '/home', component: HomePage, name: Home },
+		{ path: '/contacts', component: ContactsPage, name: Contacts },
 
 		// Route di errore
 		{ path: '*', component: NotFoundPage },

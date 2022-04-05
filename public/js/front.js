@@ -5157,6 +5157,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header",
   props: ["title"]
@@ -42348,7 +42354,7 @@ var render = function () {
         [
           _c(
             "router-link",
-            { staticClass: "navbar-brand", attrs: { to: "/" } },
+            { staticClass: "navbar-brand", attrs: { to: { name: _vm.Home } } },
             [_vm._v(_vm._s(_vm.title))]
           ),
           _vm._v(" "),
@@ -42366,7 +42372,10 @@ var render = function () {
                   [
                     _c(
                       "router-link",
-                      { staticClass: "nav-link", attrs: { to: "/home" } },
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: _vm.Home } },
+                      },
                       [_vm._v("Home")]
                     ),
                   ],
@@ -42379,7 +42388,10 @@ var render = function () {
                   [
                     _c(
                       "router-link",
-                      { staticClass: "nav-link", attrs: { to: "/contacts" } },
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: _vm.Contacts } },
+                      },
                       [_vm._v("Contacts")]
                     ),
                   ],
@@ -58659,10 +58671,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _components_pages_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
     path: '/home',
-    component: _components_pages_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"]
+    component: _components_pages_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"],
+    name: Home
   }, {
     path: '/contacts',
-    component: _components_pages_ContactsPage__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _components_pages_ContactsPage__WEBPACK_IMPORTED_MODULE_3__["default"],
+    name: Contacts
   }, // Route di errore
   {
     path: '*',
