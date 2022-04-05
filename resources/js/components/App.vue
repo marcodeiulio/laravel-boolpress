@@ -1,7 +1,9 @@
 <template>
   <div>
     <Header :title="title" />
-    <PostsList />
+    <main>
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
