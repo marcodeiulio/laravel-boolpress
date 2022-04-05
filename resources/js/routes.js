@@ -15,7 +15,9 @@ const router = new VueRouter({
 		{ path: '/', component: HomePage },
 		{ path: '/home', component: HomePage },
 		{ path: '/contacts', component: ContactsPage },
-		{ path: '/*', component: NotFoundPage },
+
+		// Route di errore
+		{ path: '*', component: NotFoundPage },
 	]
 });
 

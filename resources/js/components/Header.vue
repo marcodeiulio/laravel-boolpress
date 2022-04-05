@@ -1,7 +1,17 @@
 <template>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-      <span class="navbar-brand mb-0 h1">{{ title }}</span>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <router-link class="navbar-brand" to="/">{{ title }}</router-link>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/home">Home</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/contacts">Contacts</router-link>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </template>

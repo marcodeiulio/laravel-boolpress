@@ -5147,6 +5147,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header",
   props: ["title"]
@@ -5216,6 +5226,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -42325,13 +42338,61 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("nav", { staticClass: "navbar navbar-dark bg-dark" }, [
-    _c("div", { staticClass: "container" }, [
-      _c("span", { staticClass: "navbar-brand mb-0 h1" }, [
-        _vm._v(_vm._s(_vm.title)),
-      ]),
-    ]),
-  ])
+  return _c(
+    "nav",
+    { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" },
+    [
+      _c(
+        "div",
+        { staticClass: "container-fluid" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "navbar-brand", attrs: { to: "/" } },
+            [_vm._v(_vm._s(_vm.title))]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarNav" },
+            },
+            [
+              _c("ul", { staticClass: "navbar-nav" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { staticClass: "nav-link", attrs: { to: "/home" } },
+                      [_vm._v("Home")]
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      { staticClass: "nav-link", attrs: { to: "/contacts" } },
+                      [_vm._v("Contacts")]
+                    ),
+                  ],
+                  1
+                ),
+              ]),
+            ]
+          ),
+        ],
+        1
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42427,30 +42488,36 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass:
+        "d-flex flex-column justify-content-center align-items-center",
+      attrs: { id: "not-found" },
+    },
+    [
+      _c("h4", { staticClass: "text-muted" }, [_vm._v("404 | Not Found")]),
+      _vm._v(" "),
+      _c("h3", { staticClass: "text-muted" }, [
+        _vm._v("Whoops! There's nothing to see here 👀"),
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-primary",
+          on: {
+            click: function ($event) {
+              return _vm.$router.back()
+            },
+          },
+        },
+        [_vm._v("\n    Go back\n  ")]
+      ),
+    ]
+  )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "d-flex flex-column justify-content-center align-items-center",
-        attrs: { id: "not-found" },
-      },
-      [
-        _c("h4", { staticClass: "text-muted" }, [_vm._v("404 - Not Found")]),
-        _vm._v(" "),
-        _c("h3", { staticClass: "text-muted" }, [
-          _vm._v("Whoops! There's nothing to see here 👀"),
-        ]),
-      ]
-    )
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -58596,8 +58663,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/contacts',
     component: _components_pages_ContactsPage__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }, {
-    path: '/*',
+  }, // Route di errore
+  {
+    path: '*',
     component: _components_pages_NotFoundPage__WEBPACK_IMPORTED_MODULE_4__["default"]
   }]
 });
