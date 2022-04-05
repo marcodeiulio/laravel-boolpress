@@ -7,28 +7,7 @@
         :key="post.id"
         class="col-12 d-flex justify-content-center my-3"
       >
-        <div class="card mb-3" style="max-width: 540px">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img
-                :src="post.image"
-                class="img-fluid rounded-start"
-                :alt="`Thumb: [${post.title}]`"
-              />
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">
-                  {{ post.content }}
-                </p>
-                <p class="card-text">
-                  <small class="text-muted">{{ post.updated_at }}</small>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <PostCard :post="post" />
       </li>
     </ul>
     <p v-else>Non ci sono post</p>
@@ -36,8 +15,10 @@
 </template>
 
 <script>
+import PostCard from "./PostCard.vue";
 export default {
   name: "PostsList",
+  components: { PostCard },
   data() {
     return {
       posts: [],
