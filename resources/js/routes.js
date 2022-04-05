@@ -11,6 +11,7 @@ Vue.use(VueRouter);
 // Inizializzo VueRouter
 const router = new VueRouter({
 	mode: 'history',
+	linkExactActiveClass: 'active',
 	routes: [
 		{ path: '/', component: HomePage },
 		{ path: '/home', component: HomePage, name: 'Home' },
