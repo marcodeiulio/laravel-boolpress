@@ -8,13 +8,26 @@
       />
     </figure>
     <div class="card-body">
-      <h5 class="card-title">{{ post.title }}</h5>
+      <h5 class="card-title">
+        {{ post.title }}
+        <span :class="`badge rounded-pill bg-${post.category.color}`">{{
+          post.category.label
+        }}</span>
+      </h5>
       <p class="card-text">
         {{ post.content }}
       </p>
-      <p class="card-text text-end">
-        <small class="text-muted">{{ updatedAt }}</small>
-      </p>
+    </div>
+    <div
+      class="card-footer d-flex align-items-center"
+      :class="
+        post.tags.label ? 'justify-content-between' : 'justify-content-end'
+      "
+    >
+      <span :class="`badge rounded-pill bg-${post.tags.color}`">{{
+        post.tags.label
+      }}</span>
+      <small class="text-muted text-end">{{ updatedAt }}</small>
     </div>
   </div>
 </template>

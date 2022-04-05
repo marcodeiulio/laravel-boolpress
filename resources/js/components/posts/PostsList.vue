@@ -1,6 +1,6 @@
 <template>
   <section id="posts-list" class="container">
-    <h2>Posts</h2>
+    <h2 class="mt-3">Posts</h2>
     <ul v-if="posts.length" class="list-unstyled">
       <li
         v-for="post in posts"

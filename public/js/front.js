@@ -5182,6 +5182,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["post"],
@@ -42239,19 +42252,39 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(_vm.post.title)),
+          _vm._v("\n      " + _vm._s(_vm.post.title) + "\n      "),
+          _c(
+            "span",
+            { class: "badge rounded-pill bg-" + _vm.post.category.color },
+            [_vm._v(_vm._s(_vm.post.category.label))]
+          ),
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
           _vm._v("\n      " + _vm._s(_vm.post.content) + "\n    "),
         ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text text-end" }, [
-          _c("small", { staticClass: "text-muted" }, [
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "card-footer d-flex align-items-center",
+          class: _vm.post.tags.label
+            ? "justify-content-between"
+            : "justify-content-end",
+        },
+        [
+          _c(
+            "span",
+            { class: "badge rounded-pill bg-" + _vm.post.tags.color },
+            [_vm._v(_vm._s(_vm.post.tags.label))]
+          ),
+          _vm._v(" "),
+          _c("small", { staticClass: "text-muted text-end" }, [
             _vm._v(_vm._s(_vm.updatedAt)),
           ]),
-        ]),
-      ]),
+        ]
+      ),
     ]
   )
 }
@@ -42281,7 +42314,7 @@ var render = function () {
     "section",
     { staticClass: "container", attrs: { id: "posts-list" } },
     [
-      _c("h2", [_vm._v("Posts")]),
+      _c("h2", { staticClass: "mt-3" }, [_vm._v("Posts")]),
       _vm._v(" "),
       _vm.posts.length
         ? _c(
