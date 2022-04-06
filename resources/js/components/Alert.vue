@@ -1,6 +1,8 @@
 <template>
   <div
-    :class="`alert alert-${type} alert-dismissible fade show d-flex justify-content-between align-items-center pe-3`"
+    :class="`alert alert-${
+      type || 'info'
+    } alert-dismissible fade show d-flex justify-content-between align-items-center pe-3`"
     role="alert"
   >
     <slot></slot>
