@@ -5119,6 +5119,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Alert",
   props: ["type", "dismissable"]
@@ -42416,7 +42418,7 @@ var render = function () {
     {
       class:
         "alert alert-" +
-        _vm.type +
+        (_vm.type || "info") +
         " alert-dismissible fade show d-flex justify-content-between align-items-center pe-3",
       attrs: { role: "alert" },
     },
