@@ -4,7 +4,8 @@
 <p>
 	<strong>Email:</strong> {{ $contact['email'] }}
 </p>
+<p>{{ $contact['message'] }}</p>
 
-Thanks,<br>
-{{ config('app.name') }}
+Viva la Paperella,<br>
+{{ env('MAIL_FROM_NAME') }}
 @endcomponent

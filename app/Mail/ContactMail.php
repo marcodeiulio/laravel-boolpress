@@ -30,7 +30,7 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        // contact['email'] lo prendo da __construct($contact) che a sua volta lo prende da $request-all() nel Controller
+        //? contact['email'] lo prendo da __construct($contact) che a sua volta lo prende da $request-all() nel Controller
         return $this->from($this->contact['email'])->markdown('mails.contact-mail')->with(['contact' => $this->contact]);
     }
 }
