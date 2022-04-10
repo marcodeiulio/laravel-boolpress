@@ -5282,11 +5282,15 @@ __webpack_require__.r(__webpack_exports__);
     sendForm: function sendForm() {
       var _this = this;
 
-      // console.log(this.form.email, this.form.message);
-      var params = {
-        email: this.form.email,
-        message: this.form.message
-      }; // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
+      //! prima di far partire la chiamata, controllo che il form sia ben compilato
+      //! preparo l'oggetto errors che NON è lo stesso errors che ho in data()
+      var errors = {}; //! inizio validazione
+
+      if (!this.form.email.trim()) errors.email = "Mail field is required.";
+      if (!this.form.message.trim()) errors.message = "Message field is required.";
+      if (!this.form.email.match("/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/")) errors.email = "Email is invalid."; //! Ora riassegno errors del data()
+
+      this.errors = errors; // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
 
       axios.post("http://127.0.0.1:8000/api/mas", this.form).then(function (res) {
         _this.form.email = "";
