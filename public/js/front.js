@@ -5226,8 +5226,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ContactsPage"
+  name: "ContactsPage",
+  data: function data() {
+    return {
+      form: {
+        email: "",
+        message: ""
+      },
+      // preparo error bag
+      errors: {}
+    };
+  },
+  methods: {
+    sendForm: function sendForm() {
+      var _this = this;
+
+      // console.log(this.form.email, this.form.message);
+      var params = {
+        email: this.form.email,
+        message: this.form.message
+      }; // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
+
+      axios.post("http://127.0.0.1:8000/api/mails", this.form).then(function (res) {
+        _this.form.email = "";
+        _this.form.message = "";
+        console.log("Mail sent"); // TODO alert e loader
+      })["catch"](function (err) {
+        // Recupero error bag
+        _this.errors = {
+          error: "An error occurred."
+        };
+      }).then(function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -42582,28 +42633,90 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "container", attrs: { id: "contacts-page" } },
-      [
-        _c("h1", [_vm._v("Contacts")]),
+  return _c(
+    "div",
+    { staticClass: "container", attrs: { id: "contacts-page" } },
+    [
+      _c("div", { staticClass: "my-3" }, [
+        _c("label", { staticClass: "form-label", attrs: { for: "email" } }, [
+          _vm._v("Email address"),
+        ]),
         _vm._v(" "),
-        _c("p", [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.email,
+              expression: "form.email",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "email",
+            id: "email",
+            placeholder: "name@example.com",
+          },
+          domProps: { value: _vm.form.email },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "email", $event.target.value)
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "mb-3" }, [
+        _c("label", { staticClass: "form-label", attrs: { for: "textarea" } }, [
+          _vm._v("Example textarea"),
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.message,
+              expression: "form.message",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { id: "textarea", rows: "3" },
+          domProps: { value: _vm.form.message },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "message", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("small", { staticClass: "form-text" }, [
           _vm._v(
-            "\n    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error impedit\n    numquam quas quos? Eos labore consequuntur eligendi laborum nihil aliquam\n    architecto tempore, eaque suscipit dicta distinctio nostrum repellendus\n    veritatis tenetur!\n  "
+            "Il messaggio verrà letto dall'amministratore che provvederà a\n      rispondere il prima possibile."
           ),
         ]),
-      ]
-    )
-  },
-]
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-end" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary",
+            on: { click: _vm.sendForm },
+          },
+          [_vm._v("Send")]
+        ),
+      ]),
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
