@@ -5319,29 +5319,33 @@ __webpack_require__.r(__webpack_exports__);
 
       this.isLoading = true; //! prima di far partire la chiamata, controllo che il form sia ben compilato
       //! preparo l'oggetto errors che NON è lo stesso errors che ho in data()
+      //! SUPER IMPORTANTE: Svuoto messaggi di errore e messaggi di successo
 
-      var errors = {}; //! inizio validazione
+      var errors = {};
+      this.alertMessage = ""; //! inizio validazione
 
       if (!this.form.email.trim()) errors.email = "Mail field is required.";
       if (!this.form.message.trim()) errors.message = "Message field is required.";
-      if (!this.form.email.match("/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/")) errors.email = "Email is invalid."; //! Ora riassegno errors del data()
+      if (!this.form.email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/)) errors.email = "Email is invalid."; //! Ora riassegno errors del data()
 
-      this.errors = errors; // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
+      this.errors = errors;
 
-      axios.post("http://127.0.0.1:8000/api/mails", this.form).then(function (res) {
-        _this.form.email = "";
-        _this.form.message = ""; // TODO loader
-
-        _this.alertMessage = "Mail successfully sent.";
-      })["catch"](function (err) {
-        // Recupero error bag
-        _this.hasErrors = true;
-        _this.errors = {
-          error: "An error occurred."
-        };
-      }).then(function () {
-        _this.isLoading = false;
-      });
+      if (!this.hasErrors) {
+        axios.post("http://127.0.0.1:8000/api/mails", this.form) // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
+        .then(function (res) {
+          _this.form.email = "";
+          _this.form.message = "";
+          _this.alertMessage = "Mail successfully sent.";
+        })["catch"](function (err) {
+          // Recupero error bag
+          _this.hasErrors = true;
+          _this.errors = {
+            error: "An error occurred."
+          };
+        }).then(function () {
+          _this.isLoading = false;
+        });
+      } else this.isLoading = false;
     }
   }
 });

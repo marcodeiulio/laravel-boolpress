@@ -75,37 +75,40 @@ export default {
 
       //! prima di far partire la chiamata, controllo che il form sia ben compilato
       //! preparo l'oggetto errors che NON è lo stesso errors che ho in data()
+      //! SUPER IMPORTANTE: Svuoto messaggi di errore e messaggi di successo
       const errors = {};
+      this.alertMessage = "";
       //! inizio validazione
       if (!this.form.email.trim()) errors.email = "Mail field is required.";
       if (!this.form.message.trim())
         errors.message = "Message field is required.";
-      if (!this.form.email.match("/^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/"))
+      if (
+        !this.form.email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/)
+      )
         errors.email = "Email is invalid.";
       //! Ora riassegno errors del data()
       this.errors = errors;
-
-      // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
-      axios
-        .post("http://127.0.0.1:8000/api/mails", this.form)
-        .then((res) => {
-          this.form.email = "";
-          this.form.message = "";
-          // TODO loader
-          this.alertMessage = "Mail successfully sent.";
-        })
-        .catch((err) => {
-          // Recupero error bag
-          this.hasErrors = true;
-          this.errors = { error: "An error occurred." };
-        })
-        .then(() => {
-          this.isLoading = false;
-        });
+      if (!this.hasErrors) {
+        axios
+          .post("http://127.0.0.1:8000/api/mails", this.form)
+          // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
+          .then((res) => {
+            this.form.email = "";
+            this.form.message = "";
+            this.alertMessage = "Mail successfully sent.";
+          })
+          .catch((err) => {
+            // Recupero error bag
+            this.hasErrors = true;
+            this.errors = { error: "An error occurred." };
+          })
+          .then(() => {
+            this.isLoading = false;
+          });
+      } else this.isLoading = false;
     },
   },
 };
 </script>
 
 <style>
-</style>
