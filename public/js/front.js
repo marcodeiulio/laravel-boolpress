@@ -5214,6 +5214,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Alert_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Alert.vue */ "./resources/js/components/Alert.vue");
 //
 //
 //
@@ -5245,10 +5246,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContactsPage",
+  components: {
+    Alert: _Alert_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
+      alertMessage: "",
       form: {
         email: "",
         message: ""
@@ -5256,6 +5272,11 @@ __webpack_require__.r(__webpack_exports__);
       // preparo error bag
       errors: {}
     };
+  },
+  computed: {
+    hasErrors: function hasErrors() {
+      return Object.keys(this.errors).length;
+    }
   },
   methods: {
     sendForm: function sendForm() {
@@ -5267,12 +5288,14 @@ __webpack_require__.r(__webpack_exports__);
         message: this.form.message
       }; // ? Alternativamente, invece di params, potrei passare anche direttamente this.form
 
-      axios.post("http://127.0.0.1:8000/api/mails", this.form).then(function (res) {
+      axios.post("http://127.0.0.1:8000/api/mas", this.form).then(function (res) {
         _this.form.email = "";
-        _this.form.message = "";
-        console.log("Mail sent"); // TODO alert e loader
+        _this.form.message = ""; // TODO alert e loader
+
+        _this.alertMessage = "Mail successfully sent.";
       })["catch"](function (err) {
         // Recupero error bag
+        _this.hasErrors = true;
         _this.errors = {
           error: "An error occurred."
         };
@@ -42637,6 +42660,31 @@ var render = function () {
     "div",
     { staticClass: "container", attrs: { id: "contacts-page" } },
     [
+      _vm.hasErrors || _vm.alertMessage
+        ? _c(
+            "alert",
+            {
+              staticClass: "my-2",
+              attrs: { type: _vm.hasErrors ? "danger" : "success" },
+            },
+            [
+              _vm.alertMessage
+                ? _c("span", [_vm._v(_vm._s(_vm.alertMessage))])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.hasErrors
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.errors, function (error, key) {
+                      return _c("li", { key: key }, [_vm._v(_vm._s(error))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "my-3" }, [
         _c("label", { staticClass: "form-label", attrs: { for: "email" } }, [
           _vm._v("Email address"),
@@ -42713,7 +42761,8 @@ var render = function () {
           [_vm._v("Send")]
         ),
       ]),
-    ]
+    ],
+    1
   )
 }
 var staticRenderFns = []
